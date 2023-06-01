@@ -1,7 +1,25 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.EntityFrameworkCore;
+using SistemaElecciones.Extensions;
+using SistemaElecciones.Models;
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddMemoryCache();
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<EleccionesContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+}, ServiceLifetime.Scoped);
+
+
+builder.Host.ConfigureServices(services =>
+{
+    services.AddRazorPages();
+    services.AddRazorPages().AddRazorRuntimeCompilation();
+});
+builder.Services.WebInjections();
 
 var app = builder.Build();
 
@@ -19,6 +37,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
