@@ -1,0 +1,26 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+/*    height:100%;
+    width: 100%;*/
+    background-color: white;
+}
+
+.logo {
+    width: 100px;
+}
+
+.logo-container {
+    align-content:center;
+    text-align:center;
+    width: 100%;
+    height:60%;
+    background-color: #283149 !important;
+}
+
+.container-fluid {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0 !important;
+}
