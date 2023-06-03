@@ -1,18 +1,36 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+    /*    height:100%;
+    width: 100%;*/
+    background-color: white;
+}
+
+.menu {
+    margin:0;
+    padding:0;
+    align-content: flex-start;
+    text-align: left;
+    width: 100%;
+    height: 15%;
+    background-color: #283149
+}
+
+.logo {
+    width: 100px;
+}
+
+.logo-container {
+    align-content: center;
+    text-align: center;
+    width: 20%;
+    height: 100%;
+
+}
+
+.container-fluid {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0 !important;
 }

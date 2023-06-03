@@ -20,7 +20,8 @@ namespace SistemaElecciones.Extensions
             //services.AddSingleton<IExampleServices, ExampleServices>();         
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ICargoServices, CargoServices>();
-            //services.AddScoped<ICandidatoServices, CandidatoServices>();
+            services.AddScoped<IPartidoServices, PartidoServices>();
+            services.AddScoped<ICandidatoServices, CandidatoServices>();
             #endregion
 
 
