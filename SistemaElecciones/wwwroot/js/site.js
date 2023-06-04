@@ -1,4 +1,12 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function iniciar() {
+    var imagen = document.getElementById('logout_img');
+}
+function restaurar() {
+    var imagen = document.getElementById('logout_img');
+    imagen.src = "./img/logout_red.png";
+}
 
-// Write your JavaScript code.
+function cambiarImagen() {
+    var imagen = document.getElementById('logout_img');
+    imagen.src = "./img/logout.png";
+}    

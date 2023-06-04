@@ -7,10 +7,8 @@ body {
 }
 
 .menu {
-    margin:0;
-    padding:0;
-    align-content: flex-start;
-    text-align: left;
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 15%;
     background-color: #283149
@@ -23,9 +21,16 @@ body {
 .logo-container {
     align-content: center;
     text-align: center;
-    width: 20%;
+    width: 25%;
     height: 100%;
+}
 
+.botones-container {
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    align-items: flex-end;
+    padding-bottom: 15px;
 }
 
 .container-fluid {
@@ -33,4 +38,40 @@ body {
     width: 100%;
     padding: 0;
     margin: 0 !important;
+}
+
+.option-menu {
+    color: white;
+    text-decoration: none;
+}
+
+    .option-menu:hover {
+        color: #4EC486;
+        text-decoration: none;
+    }
+
+.logout{
+    padding-top:10px;
+    text-align:right;
+    width:16.5%;
+}
+
+.logout-img {
+    height: 30px;
+    width: 30px;
+}
+
+.logout-img-red {
+    height: 30px;
+    width: 30px;
+    opacity: 0;
+}
+
+.logout-btn{
+    background-color:transparent;
+    border:none;
+}
+
+.separador {
+    width: 10%;
 }

@@ -9,48 +9,53 @@
     <link rel="stylesheet" href="~/SistemaElecciones.styles.css" asp-append-version="true" />
     @await RenderSectionAsync("Links", required: false)
 </head>
-<body>
+<body onload="iniciar()">
     <div class="container-fluid vh-100 vw-100 justify-content-center align-items-center">
-        <div class="menu mx-auto my-auto">
+        <div class="menu mx-auto my-auto d-flex">
             <div class="logo-container d-flex justify-content-center align-items-center">
-                <img src="~/img/logo_img.png" style="height:75%" id="logo" alt="Logo">
-                <img src="~/img/logo_txt.png" style="height:55%" id="logo" alt="Logo">
+                <a class="logo-container d-flex justify-content-center align-items-center" href="/Home">
+                    <img src="~/img/logo_img.png" style="height:75%" id="logo" alt="Logo">
+                    <img src="~/img/logo_txt.png" style="height:55%" id="logo" alt="Logo">
+                </a>
+                @*<img src="~/img/logo_img.png" style="height:75%" id="logo" alt="Logo">
+                <img src="~/img/logo_txt.png" style="height:55%" id="logo" alt="Logo">*@
             </div>
-            @*<div class="menu container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/img/logo_img.png" style="height:90%" id="logo" alt="Logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Mesas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Candidatos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Cargos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Partidos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Votos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Resultado</a>
-                        </li>
-                    </ul>
+            <div class="separador"></div>
+            <div class="botones-container row ">
+                <div class="d-flex justify-content-end">
+                    <div class="col">
+                        <a class="option-menu fs-5" href="/Mesa">Mesas</a>
+                    </div>
+                    <div class="col">
+                        <a class="option-menu fs-5" href="/Candidato">Candidatos</a>
+                    </div>
+                    <div class="col">
+                        <a class="option-menu fs-5" href="/Cargo">Cargos</a>
+                    </div>
+                    <div class="col">
+                        <a class="option-menu fs-5" href="/Partido">Partidos</a>
+                    </div>
+                    <div class="col">
+                        <a class="option-menu fs-5" href="/Voto">Votos</a>
+                    </div>
+                    <div class="col">
+                        <a class="option-menu fs-5" href="/Resultado">Resultado</a>
+                    </div>
                 </div>
-            </div>*@
+            </div>
+            <div class="logout">
+                <p class="d-inline"  style="color:white">Usuario</p>
+                <button class="d-inline logout-btn" onmouseout="cambiarImagen()" onmouseover="restaurar()">
+                    <img id="logout_img" class="logout-img" src="~/img/logout.png" style="height:15%">
+@*                    <img class="logout-img-red" src="~/img/logout_red.png" style="height:15%">*@
+                </button>
+            </div>
         </div>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
