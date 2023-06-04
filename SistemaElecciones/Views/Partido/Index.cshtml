@@ -8,6 +8,7 @@
 }
 
 <partial name="~/Views/Shared/_modalEdit.cshtml" />
+<partial name="~/Views/Shared/_modalCreate.cshtml" />
 
 <div class="card shadow-lg mt-5">
     <div class="card-header bg-ligth">
@@ -15,7 +16,7 @@
     </div>
     <div class="card-body">
         <p>
-            <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createModal">
+            <button type="button" class="btn btn-outline-info" onclick="ShowCreateModal()">
                 <i class="fa-solid fa-plus fa-bounce"></i>  Agregar Partido
             </button>
         </p>
@@ -33,26 +34,11 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td><button class="option btn btn-outline-info" onclick="ShowConsultaModal('@item.IdPartido')">Generar consulta</button></td>
+                            <td><button class="option btn btn-outline-info" onclick="ShowConsultaModal('@item.IdPartido')">Agregar Candidato</button></td>
                             <td>@item.Nombre</td>
                             <td>5</td>
                             <td>
                                 <div class="options d-flex ">
-                                    @{
-                                        //var consultas = new List<Consulta>(Model.Consultas.Where(x => x.IdPaciente == item.IdPaciente).ToList());
-                                        //// Almacenar el PacienteInformacion de cada objeto de consultas en una lista
-                                        //var pacientesInformacion = consultas.Select(c => c.PacienteInformacion).ToList();
-                                        //// Asignar null a la propiedad PacienteInformacion de cada objeto de consultas
-                                        //consultas.ForEach(c => c.PacienteInformacion = null);
-                                        //// Serializar la lista de consultas modificada
-                                        //var historiaJson = JsonConvert.SerializeObject(consultas);
-                                        //// Asignar el PacienteInformacion correspondiente a cada objeto de consultas
-                                        //consultas.Zip(pacientesInformacion, (c, p) => new { Consulta = c, PacienteInformacion = p })
-                                        //.ToList()
-                                        //.ForEach(cp => cp.Consulta.PacienteInformacion = cp.PacienteInformacion);
-
-                                    }
-                                    <button class="option btn btn-outline-info" onclick="ShowEditModal('@item.IdPartido')">Ver Datos</button>
                                     <form id="eliminarForm" onsubmit="alertElminarPrevent(event)" asp-action="Eliminar" asp-route-id="@item.IdPartido">
                                         <button class="option btn btn-outline-info" type="submit">Eliminar</button>
                                     </form>
@@ -70,65 +56,65 @@
 
 
 @section Scripts{
-    <script src="~/js/pages/pacientes.js" asp-append-version="true"></script>
+    <script src="~/js/pages/partido.js" asp-append-version="true"></script>
     <script src="~/lib/limonte-sweetalert2/sweetalert2.min.js"></script>
 
     <script>
 
-        function alertElminarPrevent(e) {
-            e.preventDefault();
+        //function alertElminarPrevent(e) {
+        //    e.preventDefault();
 
-            Swal.fire({
-                title: '¿Esta seguro de eliminar a este paciente?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Si',
-                cancelButtonText: 'No'
-            }).then((resultado) => {
+        //    Swal.fire({
+        //        title: '¿Esta seguro de eliminar a este paciente?',
+        //        icon: 'question',
+        //        showCancelButton: true,
+        //        confirmButtonText: 'Si',
+        //        cancelButtonText: 'No'
+        //    }).then((resultado) => {
 
-                if (resultado.isConfirmed) {
-                    const formulario = document.getElementById('eliminarForm');
-                    formulario.submit();
-                }
+        //        if (resultado.isConfirmed) {
+        //            const formulario = document.getElementById('eliminarForm');
+        //            formulario.submit();
+        //        }
 
-            })
-        }
+        //    })
+        //}
 
-        function alertAgregarPrevent(e) {
-            e.preventDefault();
+        //function alertAgregarPrevent(e) {
+        //    e.preventDefault();
 
-            Swal.fire({
-                title: '¿Esta seguro de agregar a un nuevo paciente?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Si',
-                cancelButtonText: 'No'
-            }).then((resultado) => {
+        //    Swal.fire({
+        //        title: '¿Esta seguro de agregar a un nuevo paciente?',
+        //        icon: 'question',
+        //        showCancelButton: true,
+        //        confirmButtonText: 'Si',
+        //        cancelButtonText: 'No'
+        //    }).then((resultado) => {
 
-                if (resultado.isConfirmed) {
-                    const formulario = document.getElementById('crear');
-                    formulario.submit();
-                }
+        //        if (resultado.isConfirmed) {
+        //            const formulario = document.getElementById('crear');
+        //            formulario.submit();
+        //        }
 
-            })
-        }
+        //    })
+        //}
 
-        function testAlert() {
-            Swal.fire('Any fool can use a computer');
-        }
+        //function testAlert() {
+        //    Swal.fire('Any fool can use a computer');
+        //}
 
-        function alertaEliminar() {
-            Swal.fire(
-                'Good job!',
-                'You clicked the button!',
-                'success'
-            )
-        }
+        //function alertaEliminar() {
+        //    Swal.fire(
+        //        'Good job!',
+        //        'You clicked the button!',
+        //        'success'
+        //    )
+        //}
 
 
-        let urls = {
-            getPaciente: "@Url.Action("GetPaciente", "Pacientes")",
-        }
+        //let urls = {
+        //    getPaciente: "@Url.Action("GetPaciente", "Pacientes")",
+        //}
 
     </script>
 }

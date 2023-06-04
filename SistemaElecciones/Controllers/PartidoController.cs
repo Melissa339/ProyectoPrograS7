@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaElecciones.Models;
 using SistemaElecciones.Services;
 
 namespace SistemaElecciones.Controllers
@@ -16,6 +17,26 @@ namespace SistemaElecciones.Controllers
         {
             var partidos = _partidoService.GetAll();
             return View(partidos);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return PartialView("_Create");
+        }
+
+        [HttpPost]
+        public ActionResult Create(Partido partido)
+        {
+            try
+            {
+                _partidoService.Add(partido);
+
+            }
+            catch
+            {
+            }
+            return RedirectToAction("Index");
         }
     }
 }
