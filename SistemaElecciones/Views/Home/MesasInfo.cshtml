@@ -3,20 +3,17 @@
     @using SistemaElecciones.Models
 
 @{
-    Layout = null;
+    
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Inicio - SE</title>
+
+@section Links{
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/pages/home.css" asp-append-version="true" />
-</head>
-<body>
-    <div class="card-body">
+}
+
+<div class="card-body">
         <p>
-            <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="createModal">
+            <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createModal">
                 <i class="fa-solid fa-plus fa-bounce"></i> Agregar Mesa
             </button>
         </p>
@@ -47,9 +44,8 @@
                 </tbody>
             </table>
         </div>
-    </div>
-</body>
-</html>
+</div>
+
 
 <!-- Modal Agregar mesa-->
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,20 +59,27 @@
                 <form id="crear" method="POST" action="@Url.Action("Create","Consultas")">
                     <div class="row">
                         <div class="form-group">
-                            <label class="control-label">Paciente</label>
-                            <select name="IdPaciente" id="idPaciente" class="form-select select2">
-                               @foreach (var paciente in Model)
+                            <label class="control-label">Encargado</label>
+                            <select name="IdEncargado" id="idEncargado" class="form-select select2">
+                               @foreach (var item in Model)
+
                                 {
-                                    <option value="@paciente.IdUsuarioNavigation.IdUsuario ">@paciente.IdUsuarioNavigation.Nombre</option>
+                                    <option value="@item.IdUsuarioNavigation.IdUsuario ">@item.IdUsuarioNavigation.Nombre</option>
                                 }
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Peso del paciente</label>
-                            <input name="Peso" id="Peso" class="form-control" />
+                            <label class="control-label">Cantidad de votos</label>
+                            <input name="votos" id="votos" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Presion Arterial</label>
+                            <label class="control-label">Ubicacion</label>
+                            <select name="IdEncargado" id="idEncargado" class="form-select select2">
+                                @foreach (var item in Model)
+                                {
+                                    <option value="@item.Ubicacion">@item.IdMesa</option>
+                                }
+                            </select>
                             <input name="PresionArterial" id="PresionArterial" class="form-control" />
                         </div>
                         <div class="form-group">

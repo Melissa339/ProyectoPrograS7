@@ -13,21 +13,22 @@
 <body>
     <div class="container-fluid vh-100 vw-100 justify-content-center align-items-center">
         <div class="logo-container mx-auto my-auto justify-content-center align-items-center">
-            <img src="~/img/logo_completo_dark.png" style="height:60%" id="logo" alt="Logo">
+            <img src="~/img/logo_completo_dark.png" style="height:90%" id="logo" alt="Logo">
+        </div>
+        <div class="buttons-container d-flex flex-column justify-content-center align-items-center">
+            <div class="top-buttons d-flex justify-content-center align-items-center">
+                <a class="rounded-button" href="@Url.Action("MesasInfo")">Mesas</a>
+                <a class="rounded-button">Candidatos</a>
+                <a class="rounded-button">Cargos</a>
+            </div>
+            <div class="bottom-buttons d-flex justify-content-center align-items-center">
+                <a class="rounded-button">Votos</a>
+                <a class="rounded-button">Resultados</a>
+                <a class="rounded-button">Partidos</a>
+            </div>
         </div>
     </div>
-    <div class="buttons-container">
-        <div class="top-buttons">
-            <a class="rounded-button" href="@Url.Action("MesasInfo")">Mesas</a>
-            <a class="rounded-button">Candidatos</a>
-            <a class="rounded-button">Cargos</a>
-        </div>
-        <div class="bottom-buttons">
-            <a class="rounded-button">Votos</a>
-            <a class="rounded-button">Resultados</a>
-            <a class="rounded-button">Partidos</a>
-        </div>
-    </div>
+
 </body>
 </html>
 
