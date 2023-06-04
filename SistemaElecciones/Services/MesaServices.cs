@@ -43,7 +43,6 @@ namespace SistemaElecciones.Services
 
         public int AddMesa(Mesa Mesa)
         {
-            //CAMBIAR INT POR ENUM 
             try
             {
                 Guid newGuid = Guid.NewGuid();

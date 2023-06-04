@@ -10,4 +10,5 @@ public partial class Departamento
 
     public string nombre { get; set; }
 
+    public virtual ICollection<Mesa> Mesas { get; } = new List<Mesa>();
 }
