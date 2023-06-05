@@ -29,6 +29,8 @@ public partial class Candidato
 
     public string? Antecedentes { get; set; }
 
+    public bool? EstadoEliminado { get; set; }
+
     public virtual Cargo? IdCargoNavigation { get; set; }
 
     public virtual Partido? IdPartidoNavigation { get; set; }

@@ -11,5 +11,7 @@ public partial class Resultado
 
     public int? Votos { get; set; }
 
+    public bool? EstadoEliminado { get; set; }
+
     public virtual Candidato? IdCandidatoNavigation { get; set; }
 }

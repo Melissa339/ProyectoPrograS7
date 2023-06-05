@@ -13,5 +13,7 @@ public partial class Partido
 
     public string? Nombre { get; set; }
 
+    public bool? EstadoEliminado { get; set; }
+
     public virtual ICollection<Candidato> Candidatos { get; } = new List<Candidato>();
 }

@@ -9,5 +9,7 @@ public partial class Departamento
 
     public string? Nombre { get; set; }
 
+    public bool? EstadoEliminado { get; set; }
+
     public virtual ICollection<Mesa> Mesas { get; } = new List<Mesa>();
 }

@@ -13,6 +13,8 @@ public partial class Mesa
 
     public int? CantidadVotos { get; set; }
 
+    public bool? EstadoEliminado { get; set; }
+
     public virtual Departamento? IdUbicacionNavigation { get; set; }
 
     public virtual Usuario? IdUsuarioNavigation { get; set; }

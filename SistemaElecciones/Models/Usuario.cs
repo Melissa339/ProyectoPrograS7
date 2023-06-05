@@ -13,5 +13,7 @@ public partial class Usuario
 
     public string? Password { get; set; }
 
+    public bool? EstadoEliminado { get; set; }
+
     public virtual ICollection<Mesa> Mesas { get; } = new List<Mesa>();
 }

@@ -39,7 +39,7 @@ public partial class EleccionesContext : DbContext
     {
         modelBuilder.Entity<Candidato>(entity =>
         {
-            entity.HasKey(e => e.IdCandidato).HasName("PK__candidat__3CD1A86117DFDEA7");
+            entity.HasKey(e => e.IdCandidato).HasName("PK__candidat__3CD1A86198E5CC52");
 
             entity.ToTable("candidatos");
 
@@ -62,6 +62,7 @@ public partial class EleccionesContext : DbContext
                 .HasMaxLength(16)
                 .IsUnicode(false)
                 .HasColumnName("dpi");
+            entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
             entity.Property(e => e.FechaNacimiento)
                 .HasColumnType("date")
                 .HasColumnName("fecha_nacimiento");
@@ -95,7 +96,7 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Cargo>(entity =>
         {
-            entity.HasKey(e => e.IdCargo).HasName("PK__cargo__D3C09EC55442207C");
+            entity.HasKey(e => e.IdCargo).HasName("PK__cargo__D3C09EC5DFA4E906");
 
             entity.ToTable("cargo");
 
@@ -106,17 +107,19 @@ public partial class EleccionesContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("descripcion");
+            entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
         });
 
         modelBuilder.Entity<Departamento>(entity =>
         {
-            entity.HasKey(e => e.IdDepartamento).HasName("PK__departam__64F37A160F4A1974");
+            entity.HasKey(e => e.IdDepartamento).HasName("PK__departam__64F37A16197220DC");
 
             entity.ToTable("departamentos");
 
             entity.Property(e => e.IdDepartamento)
                 .ValueGeneratedNever()
                 .HasColumnName("id_departamento");
+            entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -125,7 +128,7 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Mesa>(entity =>
         {
-            entity.HasKey(e => e.IdMesa).HasName("PK__mesa__68A1E159E2791E6C");
+            entity.HasKey(e => e.IdMesa).HasName("PK__mesa__68A1E159447A21F7");
 
             entity.ToTable("mesa");
 
@@ -133,6 +136,7 @@ public partial class EleccionesContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("id_mesa");
             entity.Property(e => e.CantidadVotos).HasColumnName("cantidad_votos");
+            entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
             entity.Property(e => e.IdUbicacion).HasColumnName("id_ubicacion");
             entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
 
@@ -147,13 +151,14 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Partido>(entity =>
         {
-            entity.HasKey(e => e.IdPartido).HasName("PK__partido__42D83E44FCDE5A10");
+            entity.HasKey(e => e.IdPartido).HasName("PK__partido__42D83E44F749704D");
 
             entity.ToTable("partido");
 
             entity.Property(e => e.IdPartido)
                 .ValueGeneratedNever()
                 .HasColumnName("id_partido");
+            entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
             entity.Property(e => e.FechaFundacion)
                 .HasColumnType("date")
                 .HasColumnName("fecha_fundacion");
@@ -169,13 +174,14 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Resultado>(entity =>
         {
-            entity.HasKey(e => e.IdResultado).HasName("PK__resultad__33A42B30DAA0C77B");
+            entity.HasKey(e => e.IdResultado).HasName("PK__resultad__33A42B3054673B59");
 
             entity.ToTable("resultado");
 
             entity.Property(e => e.IdResultado)
                 .ValueGeneratedNever()
                 .HasColumnName("id_resultado");
+            entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
             entity.Property(e => e.IdCandidato).HasColumnName("id_candidato");
             entity.Property(e => e.Votos).HasColumnName("votos");
 
@@ -186,7 +192,7 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__usuario__4E3E04AD30B7308A");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__usuario__4E3E04AD7DB2FDAC");
 
             entity.ToTable("usuario");
 
@@ -197,6 +203,7 @@ public partial class EleccionesContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("correo");
+            entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -209,7 +216,7 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Voto>(entity =>
         {
-            entity.HasKey(e => e.IdVoto).HasName("PK__voto__5F39601A66A2690C");
+            entity.HasKey(e => e.IdVoto).HasName("PK__voto__5F39601A4A944142");
 
             entity.ToTable("voto");
 
@@ -220,6 +227,7 @@ public partial class EleccionesContext : DbContext
                 .HasMaxLength(13)
                 .IsUnicode(false)
                 .HasColumnName("dpi_ciudadano");
+            entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
             entity.Property(e => e.IdCandidato).HasColumnName("id_candidato");
             entity.Property(e => e.IdMesa).HasColumnName("id_mesa");
 

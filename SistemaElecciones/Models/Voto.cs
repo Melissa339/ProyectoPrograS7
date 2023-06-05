@@ -13,6 +13,8 @@ public partial class Voto
 
     public string? DpiCiudadano { get; set; }
 
+    public bool? EstadoEliminado { get; set; }
+
     public virtual Candidato? IdCandidatoNavigation { get; set; }
 
     public virtual Mesa? IdMesaNavigation { get; set; }
