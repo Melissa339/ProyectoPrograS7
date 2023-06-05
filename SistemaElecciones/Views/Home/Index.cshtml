@@ -15,19 +15,20 @@
         <div class="logo-container mx-auto my-auto justify-content-center align-items-center">
             <img src="~/img/logo_completo_dark.png" style="height:90%" id="logo" alt="Logo">
         </div>
-        <div class="bigmenu-container d-flex flex-column justify-content-center align-items-center">
-            <div class="menu-container d-flex justify-content-center align-items-center">
-                <button>Mesas</button>
-                <button>Candidatos</button>
-                <button>Cargos</button>
+        <div class="buttons-container d-flex flex-column justify-content-center align-items-center">
+            <div class="top-buttons d-flex justify-content-center align-items-center">
+                <a class="rounded-button" href="@Url.Action("MesasInfo")">Mesas</a>
+                <a class="rounded-button">Candidatos</a>
+                <a class="rounded-button">Cargos</a>
             </div>
-            <div class="menu-container d-flex justify-content-center align-items-center">
-                <button>Votos</button>
-                <button>Resultado</button>
-                <button>Partidos</button>
+            <div class="bottom-buttons d-flex justify-content-center align-items-center">
+                <a class="rounded-button">Votos</a>
+                <a class="rounded-button">Resultados</a>
+                <a class="rounded-button">Partidos</a>
             </div>
         </div>
     </div>
+
 </body>
 </html>
 
