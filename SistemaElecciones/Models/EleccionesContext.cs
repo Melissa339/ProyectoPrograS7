@@ -21,6 +21,8 @@ public partial class EleccionesContext : DbContext
 
     public virtual DbSet<Mesa> Mesas { get; set; }
 
+    public virtual DbSet<Departamento> Departamentos { get; set; }
+
     public virtual DbSet<Partido> Partidos { get; set; }
 
     public virtual DbSet<Resultado> Resultados { get; set; }
@@ -110,14 +112,33 @@ public partial class EleccionesContext : DbContext
                 .HasColumnName("id_mesa");
             entity.Property(e => e.CantidadVotos).HasColumnName("cantidad_votos");
             entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
-            entity.Property(e => e.Ubicacion)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("ubicacion");
+            entity.Property(e => e.IdUbicacion).HasColumnName("id_ubicacion");
+            //.HasMaxLength(100)
+            //.IsUnicode(false)
+
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Mesas)
                 .HasForeignKey(d => d.IdUsuario)
                 .HasConstraintName("FK__mesa__id_usuario__300424B4");
+            entity.HasOne(d => d.IdDepartamentoNavigation).WithMany(p => p.Mesas)
+                .HasForeignKey(d => d.IdUbicacion)
+                .HasConstraintName("FK__mesa__id_usuario__300424B2");
+
+        });
+
+        modelBuilder.Entity<Departamento>(entity =>
+        {
+            entity.HasKey(e => e.IdDepartamento).HasName("PK__cargo__D3C09EC56444D47B");
+
+            entity.ToTable("departamentos");
+
+            entity.Property(e => e.IdDepartamento)
+                .ValueGeneratedNever()
+                .HasColumnName("id_departamento");
+            entity.Property(e => e.nombre)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
         });
 
         modelBuilder.Entity<Partido>(entity =>
