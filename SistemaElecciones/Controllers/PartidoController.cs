@@ -38,5 +38,27 @@ namespace SistemaElecciones.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult Editar(Guid partidoId)
+        {
+            var partido = _partidoService.Get(partidoId);
+
+            return PartialView("_Create",partido);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Partido partido)
+        {
+            try
+            {
+                _partidoService.Update(partido);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
     }
 }

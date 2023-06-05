@@ -5,7 +5,7 @@ namespace SistemaElecciones.Services
     public interface ICandidatoServices
     {
         List<Candidato> GetAll();
-        //void Add(Cita cita);
+        void Add(Candidato candidato);
         //void Delete(Guid id);
     }
     public class CandidatoServices : ICandidatoServices
@@ -21,6 +21,13 @@ namespace SistemaElecciones.Services
         public List<Candidato> GetAll()
         {
             return _dbContext.Candidatos.ToList();
+        }
+
+        public void Add(Candidato candidato)
+        {
+            candidato.IdCandidato = Guid.NewGuid();
+            _dbContext.Candidatos.Add(candidato);
+            _dbContext.SaveChanges();
         }
     }
 }

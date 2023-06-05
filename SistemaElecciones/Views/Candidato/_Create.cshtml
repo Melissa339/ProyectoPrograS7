@@ -1,0 +1,66 @@
+﻿@model SistemaElecciones.Models.CandidatoViewModel
+
+<form id="crear" asp-action="Create" method="POST">
+    <div class="row">
+        <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label">Partido</label>
+            <select required name="IdPartido" id="IdPartido" class="form-select select2">
+                <option value=""></option>
+                    @foreach (var partido in Model.Partidos)
+                    {
+                        <option value="@partido.IdPartido">@partido.Nombre</option>
+                    }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Cargo</label>
+            <select required name="IdCargo" id="IdCargo" class="form-select select2">
+                <option value=""></option>
+                    @foreach (var cargo in Model.Cargos)
+                    {
+                        <option value="@cargo.IdCargo">@cargo.Descripcion</option>
+                    }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">DPI</label>
+            <input required name="Dpi" id="Dpi" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Nombre</label>
+            <input required name="Nombre" id="Nombre" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Apellido</label>
+            <input required name="Apellido" id="Apellido" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Fecha de nacimiento</label>
+            <input required name="FechaNacimiento" id="FechaNacimiento" type="date" class="form-control" />
+        </div>
+        </div>
+        <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label">Género</label>
+            <input name="Genero" id="Genero" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Teléfono</label>
+            <input required name="Telefono" id="Telefono" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Correo</label>
+            <input name="Correo" id="Correo" type="email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Profesión</label>
+            <input name="Profesion" id="Profesion" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Antecedentes</label>
+            <input name="Antecedentes" id="Antecedentes" class="form-control" />
+        </div>
+        </div>
+    </div>
+</form>

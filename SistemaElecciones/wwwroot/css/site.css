@@ -50,10 +50,10 @@ body {
         text-decoration: none;
     }
 
-.logout{
-    padding-top:10px;
-    text-align:right;
-    width:16.5%;
+.logout {
+    padding-top: 10px;
+    text-align: right;
+    width: 16.5%;
 }
 
 .logout-img {
@@ -67,11 +67,107 @@ body {
     opacity: 0;
 }
 
-.logout-btn{
-    background-color:transparent;
-    border:none;
+.logout-btn {
+    background-color: transparent;
+    border: none;
 }
 
 .separador {
     width: 10%;
 }
+
+/*table th {
+    white-space: nowrap !important;
+}
+
+table td {
+    white-space: nowrap !important;
+}
+*/
+.dataTables_wrapper .dataTables_filter input {
+    border: none;
+    border-bottom: 2px solid #999;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 8px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 10px;
+    background-color: transparent;
+    transition: border-bottom 0.2s ease-in-out;
+}
+
+    .dataTables_wrapper .dataTables_filter input:focus {
+        outline: none;
+        border-bottom: 2px solid #0099cc;
+    }
+
+.dataTables_wrapper .dt-buttons {
+    position: absolute;
+}
+
+.dataTables_filter input {
+    width: 300%;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: left;
+    text-align: center;
+    position: center;
+    margin-left: 25%;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    float: right;
+    text-align: right;
+    padding-top: 0.25em;
+}
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        box-sizing: border-box;
+        display: inline-block;
+        min-width: 1.5em;
+        padding: 0.5em 1em;
+        margin-left: 2px;
+        text-align: center;
+        text-decoration: none !important;
+        cursor: pointer;
+        color: inherit !important;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        background: transparent;
+    }
+
+.active {
+    color: #4EC486;
+}
+
+.table-dark {
+    --bs-table-bg: #283149;
+}
+
+.btn-outline-info {
+    color: #4EC486;
+    border-color: #4EC486;
+}
+
+    .btn-outline-info:hover {
+        background-color: #4EC486;
+        color: white;
+        border-color: #4EC486;
+    }
+
+.btn-primary {
+    color: #fff;
+    background-color: #4EC486;
+    border-color: #4EC486;
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #38a36b;
+        border-color: #38a36b;
+    }

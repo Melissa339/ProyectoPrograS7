@@ -4,10 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" />
     <title>@ViewData["Title"] - SE</title>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SistemaElecciones.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     @await RenderSectionAsync("Links", required: false)
 </head>
 <body onload="iniciar()">
@@ -25,22 +26,22 @@
             <div class="botones-container row ">
                 <div class="d-flex justify-content-end">
                     <div class="col">
-                        <a class="option-menu fs-5" href="/Mesa">Mesas</a>
+                        <a class="option-menu fs-5 @((ViewContext.RouteData.Values["controller"].ToString() == "Mesa") ? "active" : "")" href="/Mesa">Mesas</a>
                     </div>
                     <div class="col">
-                        <a class="option-menu fs-5" href="/Candidato">Candidatos</a>
+                        <a class="option-menu fs-5 @((ViewContext.RouteData.Values["controller"].ToString() == "Candidato") ? "active" : "")" href="/Candidato">Candidatos</a>
                     </div>
                     <div class="col">
-                        <a class="option-menu fs-5" href="/Cargo">Cargos</a>
+                        <a class="option-menu fs-5 @((ViewContext.RouteData.Values["controller"].ToString() == "Cargo") ? "active" : "")" href="/Cargo">Cargos</a>
                     </div>
                     <div class="col">
-                        <a class="option-menu fs-5" href="/Partido">Partidos</a>
+                        <a class="option-menu fs-5 @((ViewContext.RouteData.Values["controller"].ToString() == "Partido") ? "active" : "")" href="/Partido">Partidos</a>
                     </div>
                     <div class="col">
-                        <a class="option-menu fs-5" href="/Voto">Votos</a>
+                        <a class="option-menu fs-5 @((ViewContext.RouteData.Values["controller"].ToString() == "Voto") ? "active" : "")" href="/Voto">Votos</a>
                     </div>
                     <div class="col">
-                        <a class="option-menu fs-5" href="/Resultado">Resultado</a>
+                        <a class="option-menu fs-5 @((ViewContext.RouteData.Values["controller"].ToString() == "Resultado") ? "active" : "")" href="/Resultado">Resultado</a>
                     </div>
                 </div>
             </div>
@@ -59,13 +60,15 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script src="~/js/datatables.buttons.min.js"></script>
-    <script src="~/js/index.global.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script src="~/js/datatables.buttons.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="~/lib/limonte-sweetalert2/sweetalert2.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/index.global.min.js"></script>
+
 
     <script type="text/javascript" language="javascript" src="jquery.js"></script>
 

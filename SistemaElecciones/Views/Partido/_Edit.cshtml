@@ -1,0 +1,11 @@
+﻿@model SistemaElecciones.Models.Partido
+
+<form id="editar" asp-action="Editar" method="POST">
+    <div class="row">
+            <input hidden name="IdPartido" value="@Model.IdPartido" />
+        <div class="form-group">
+            <label class="control-label">Nombre</label>
+            <input name="Nombre" id="Nombre" class="form-control" />
+        </div>
+    </div>
+</form>
