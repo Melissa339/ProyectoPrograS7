@@ -19,9 +19,9 @@ public partial class EleccionesContext : DbContext
 
     public virtual DbSet<Cargo> Cargos { get; set; }
 
-    public virtual DbSet<Mesa> Mesas { get; set; }
-
     public virtual DbSet<Departamento> Departamentos { get; set; }
+
+    public virtual DbSet<Mesa> Mesas { get; set; }
 
     public virtual DbSet<Partido> Partidos { get; set; }
 
@@ -31,11 +31,15 @@ public partial class EleccionesContext : DbContext
 
     public virtual DbSet<Voto> Votos { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Elecciones;Trusted_Connection=True;MultipleActiveResultSets=true;");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Candidato>(entity =>
         {
-            entity.HasKey(e => e.IdCandidato).HasName("PK__candidat__3CD1A86148754307");
+            entity.HasKey(e => e.IdCandidato).HasName("PK__candidat__3CD1A86117DFDEA7");
 
             entity.ToTable("candidatos");
 
@@ -75,7 +79,10 @@ public partial class EleccionesContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("profesion");
-            entity.Property(e => e.Telefono).HasColumnName("telefono");
+            entity.Property(e => e.Telefono)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("telefono");
 
             entity.HasOne(d => d.IdCargoNavigation).WithMany(p => p.Candidatos)
                 .HasForeignKey(d => d.IdCargo)
@@ -88,7 +95,7 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Cargo>(entity =>
         {
-            entity.HasKey(e => e.IdCargo).HasName("PK__cargo__D3C09EC56444D47B");
+            entity.HasKey(e => e.IdCargo).HasName("PK__cargo__D3C09EC55442207C");
 
             entity.ToTable("cargo");
 
@@ -101,9 +108,24 @@ public partial class EleccionesContext : DbContext
                 .HasColumnName("descripcion");
         });
 
+        modelBuilder.Entity<Departamento>(entity =>
+        {
+            entity.HasKey(e => e.IdDepartamento).HasName("PK__departam__64F37A160F4A1974");
+
+            entity.ToTable("departamentos");
+
+            entity.Property(e => e.IdDepartamento)
+                .ValueGeneratedNever()
+                .HasColumnName("id_departamento");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+        });
+
         modelBuilder.Entity<Mesa>(entity =>
         {
-            entity.HasKey(e => e.IdMesa).HasName("PK__mesa__68A1E159850FEC29");
+            entity.HasKey(e => e.IdMesa).HasName("PK__mesa__68A1E159E2791E6C");
 
             entity.ToTable("mesa");
 
@@ -111,54 +133,43 @@ public partial class EleccionesContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("id_mesa");
             entity.Property(e => e.CantidadVotos).HasColumnName("cantidad_votos");
-            entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
             entity.Property(e => e.IdUbicacion).HasColumnName("id_ubicacion");
-            //.HasMaxLength(100)
-            //.IsUnicode(false)
+            entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
 
+            entity.HasOne(d => d.IdUbicacionNavigation).WithMany(p => p.Mesas)
+                .HasForeignKey(d => d.IdUbicacion)
+                .HasConstraintName("FK__mesa__id_ubicaci__32E0915F");
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Mesas)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__mesa__id_usuario__300424B4");
-            entity.HasOne(d => d.IdDepartamentoNavigation).WithMany(p => p.Mesas)
-                .HasForeignKey(d => d.IdUbicacion)
-                .HasConstraintName("FK__mesa__id_usuario__300424B2");
-
-        });
-
-        modelBuilder.Entity<Departamento>(entity =>
-        {
-            entity.HasKey(e => e.IdDepartamento).HasName("PK__cargo__D3C09EC56444D47B");
-
-            entity.ToTable("departamentos");
-
-            entity.Property(e => e.IdDepartamento)
-                .ValueGeneratedNever()
-                .HasColumnName("id_departamento");
-            entity.Property(e => e.nombre)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("nombre");
+                .HasConstraintName("FK__mesa__id_usuario__31EC6D26");
         });
 
         modelBuilder.Entity<Partido>(entity =>
         {
-            entity.HasKey(e => e.IdPartido).HasName("PK__partido__42D83E445F3CCB9C");
+            entity.HasKey(e => e.IdPartido).HasName("PK__partido__42D83E44FCDE5A10");
 
             entity.ToTable("partido");
 
             entity.Property(e => e.IdPartido)
                 .ValueGeneratedNever()
                 .HasColumnName("id_partido");
+            entity.Property(e => e.FechaFundacion)
+                .HasColumnType("date")
+                .HasColumnName("fecha_fundacion");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
+            entity.Property(e => e.Sede)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("sede");
         });
 
         modelBuilder.Entity<Resultado>(entity =>
         {
-            entity.HasKey(e => e.IdResultado).HasName("PK__resultad__33A42B30A780FE86");
+            entity.HasKey(e => e.IdResultado).HasName("PK__resultad__33A42B30DAA0C77B");
 
             entity.ToTable("resultado");
 
@@ -175,7 +186,7 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__usuario__4E3E04AD685203DA");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__usuario__4E3E04AD30B7308A");
 
             entity.ToTable("usuario");
 
@@ -198,7 +209,7 @@ public partial class EleccionesContext : DbContext
 
         modelBuilder.Entity<Voto>(entity =>
         {
-            entity.HasKey(e => e.IdVoto).HasName("PK__voto__5F39601A311EBAFF");
+            entity.HasKey(e => e.IdVoto).HasName("PK__voto__5F39601A66A2690C");
 
             entity.ToTable("voto");
 
@@ -214,11 +225,11 @@ public partial class EleccionesContext : DbContext
 
             entity.HasOne(d => d.IdCandidatoNavigation).WithMany(p => p.Votos)
                 .HasForeignKey(d => d.IdCandidato)
-                .HasConstraintName("FK__voto__id_candida__32E0915F");
+                .HasConstraintName("FK__voto__id_candida__35BCFE0A");
 
             entity.HasOne(d => d.IdMesaNavigation).WithMany(p => p.Votos)
                 .HasForeignKey(d => d.IdMesa)
-                .HasConstraintName("FK__voto__id_mesa__33D4B598");
+                .HasConstraintName("FK__voto__id_mesa__36B12243");
         });
 
         OnModelCreatingPartial(modelBuilder);

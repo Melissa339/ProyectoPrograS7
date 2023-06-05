@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SistemaElecciones.Models;
@@ -22,7 +21,7 @@ public partial class Candidato
 
     public string? Genero { get; set; }
 
-    public int? Telefono { get; set; }
+    public string? Telefono { get; set; }
 
     public string? Correo { get; set; }
 
