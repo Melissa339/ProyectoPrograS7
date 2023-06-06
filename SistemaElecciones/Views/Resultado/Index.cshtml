@@ -1,1 +1,160 @@
-﻿
+﻿@model SistemaElecciones.Models.ResultadoViewModel
+@using SistemaElecciones.Models
+
+@{
+    ViewData["Title"] = "Resultados";
+}
+
+<div class="card shadow-lg mt-5">
+    <div class="card-header bg-ligth">
+        <h3 class="h3">Resultados</h3>
+    </div>
+    <div class="card-body">
+        <p>
+        </p>
+        <div class="table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl table-responsive-xxl mt-5">
+            <table id="tableMesas" class="table table-striped ">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Candidato</th>
+                        <th>Votos</th>
+                        <th>Cargo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var resultados in Model.resultados)
+                    {
+                        <tr>
+@*                            <td>@Model.usuarios.FirstOrDefault(x=>x.IdUsuario == mesa.IdUsuario).Nombre</td>
+                            <td>@Model.departamentos.FirstOrDefault(x=> x.IdDepartamento == mesa.IdUbicacion).Nombre</td>*@
+                            <td>@Model.candidatos.FirstOrDefault(x=>x.IdCandidato == resultados.IdCandidato).Nombre</td>
+                            <td>@resultados.Votos</td>
+                            <td>@Model.cargos.FirstOrDefault(x=> x.IdCargo == resultados.IdCandidatoNavigation.IdCargo).Descripcion</td>                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="card shadow-lg mt-5">
+<canvas id="chart" width="400" height="200"></canvas>
+</div>
+
+<select required name="IdCargo" id="IdCargo" class="form-select select2">
+    <option value=""></option>
+    @foreach (var cargo in Model.cargos)
+    {
+        if (cargo == Model.cargos.FirstOrDefault())
+        {
+            <option value="@cargo.IdCargo" selected>@cargo.Descripcion</option>
+        }
+        else
+        {
+            <option value="@cargo.IdCargo">@cargo.Descripcion</option>
+        }
+    }
+</select>
+
+
+
+@{
+    var jsonSettings = new Newtonsoft.Json.JsonSerializerSettings
+            {
+                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            };
+
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, jsonSettings);
+
+    
+    var nombresCandidatos = Model.candidatos.Select(c => c.Nombre).ToList();
+    var nombresCargos = Model.cargos.Select(c => c.Descripcion).ToList();
+    var votos = Model.resultados.Select(r => r.Votos).ToList();
+}
+
+
+@section Scripts{
+    <script>
+        var myChart;
+
+        function crearGrafica(labels, data) {
+            if (myChart) {
+                myChart.destroy(); // Destruir la instancia anterior si existe
+            }
+
+            var config = {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Votos',
+                        data: data,
+                        backgroundColor: '#283149',
+                        borderColor: 'rgba(255, 255, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            var ctx = document.getElementById('chart').getContext('2d');
+            myChart = new Chart(ctx, config);
+        }
+
+        function handleSelectChange() {
+            var selectedCargoId = this.value;
+
+            // Filtrar los nombres de los candidatos y los votos por el cargo seleccionado
+            var filteredNombresCandidatos = nombresCandidatos.filter(function (c, i) {
+                return Model.resultados[i].IdCandidatoNavigation.IdCargo.toString() === selectedCargoId;
+            });
+            var filteredVotos = votos.filter(function (v, i) {
+                return Model.resultados[i].IdCandidatoNavigation.IdCargo.toString() === selectedCargoId;
+            });
+
+            // Actualizar la gráfica con los datos filtrados
+            myChart.data.labels = filteredNombresCandidatos;
+            myChart.data.datasets[0].data = filteredVotos;
+            myChart.update();
+        }
+
+
+
+        // Llamar a la función para crear la gráfica inicial
+        crearGrafica(@Html.Raw(Json.Serialize(nombresCandidatos)), @Html.Raw(Json.Serialize(votos)));
+
+        $(document).ready(function () {
+            // Obtener el elemento select
+            var selectCargo = $('#IdCargo');
+
+            // Agregar un controlador de eventos al cambio de valor
+            selectCargo.change(function () {
+                // Obtener el nuevo valor seleccionado
+                var selectedCargoId = $(this).val();
+
+                // Realizar una llamada AJAX al servidor para obtener los nuevos datos
+                $.ajax({
+                    url: '/Resultado/ObtenerDatosGrafica',
+                    type: 'GET',
+                    data: { idCargo: selectedCargoId },
+                    success: function (data) {
+                        // Actualizar los datos de la gráfica con los nuevos valores recibidos
+                        crearGrafica(data.nombresCandidatos, data.votos);
+                    },
+                    error: function (xhr, status, error) {
+                        // Manejar errores si es necesario
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+}

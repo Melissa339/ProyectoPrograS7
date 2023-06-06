@@ -9,15 +9,21 @@ namespace SistemaElecciones.Controllers
     {
         private readonly IMesaServices _mesaServices;
         private readonly IUsuarioServices _usuarioServices;
+        private readonly IDepartamentoServices _departamentoServices;
 
-        public MesaController(IMesaServices mesaServices, IUsuarioServices usuarioServices)
+        public MesaController(IMesaServices mesaServices, IUsuarioServices usuarioServices, IDepartamentoServices departamentoServices)
         {
+            _departamentoServices = departamentoServices;
             _mesaServices = mesaServices;
             _usuarioServices = usuarioServices;
         }
         public IActionResult Index()
         {
-            return View("MesasInfo");
+            var encargados = _usuarioServices.GetAll();
+            var mesas = _mesaServices.GetAll();
+            var departamentos = _departamentoServices.GetAll();
+
+            return View(new MesasViewModel { departamentos = departamentos, mesas = mesas, usuarios = encargados});
         }
 
         [HttpPost]
@@ -33,7 +39,7 @@ namespace SistemaElecciones.Controllers
             //var vUsuarios = _usuarioServices.GetAll();
             //return View(new MesasViewModel { mesas = vMesas, usuarios = vUsuarios });
             List<Mesa> mesas = _mesaServices.GetAll();
-            return View("MesasInfo", mesas);
+            return View("Index", mesas);
         }
 
         [HttpPost]
