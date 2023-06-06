@@ -82,7 +82,7 @@ function CreateTable() {
 function ShowCreateModal() {
     $('#modalCreate').modal('show');
     $.ajax({
-        url: '/Cargo/Create',
+        url: '/Candidato/Create',
         async: true,
         type: "GET",
         atType: 'html',

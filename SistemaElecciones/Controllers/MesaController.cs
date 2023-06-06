@@ -42,6 +42,12 @@ namespace SistemaElecciones.Controllers
             return View("Index", mesas);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return PartialView("_Create");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Mesa Mesa)
@@ -56,6 +62,28 @@ namespace SistemaElecciones.Controllers
 
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Editar(Guid mesaId)
+        {
+            //var mesa = _mesaServices.Get(mesaId);
+
+            //return PartialView("_Edit", mesa);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Partido partido)
+        {
+            try
+            {
+                //_partidoService.Update(partido);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View("Error");
+            }
         }
     }
 }
