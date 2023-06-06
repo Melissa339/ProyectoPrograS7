@@ -10,7 +10,6 @@
     <Folder Include="Views\Candidato\" />
     <Folder Include="Views\Candidato\" />
     <Folder Include="Views\Cargo\" />
-    <Folder Include="Views\Voto\" />
     <Folder Include="Views\Usuario\" />
     <Folder Include="Views\Resultado\" />
   </ItemGroup>

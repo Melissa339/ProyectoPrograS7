@@ -24,7 +24,8 @@ namespace SistemaElecciones.Extensions
             services.AddScoped<ICandidatoServices, CandidatoServices>();
             services.AddScoped<IMesaServices, MesaServices>();
             services.AddScoped<IUsuarioServices, UsuarioServices>();
-            //services.AddScoped<ICandidatoServices, CandidatoServices>();
+            services.AddScoped<IVotoServices, VotoServices>();
+            services.AddScoped<IDepartamentoServices, DepartamentoServices>();
             #endregion
 
 

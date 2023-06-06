@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var candidato in Model.Candidatos)
+                    @foreach (var candidato in Model.Candidatos.Where(x => x.EstadoEliminado == false))
                     {
                         <tr>
                             <td>@candidato.Nombre</td>

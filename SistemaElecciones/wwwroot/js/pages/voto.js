@@ -3,14 +3,14 @@ $(document).ready(function () {
 });
 
 function CreateTable() {
-    $('#tableCandidato').DataTable({
+    $('#tableVoto').DataTable({
         "autoWidth": true,
         "ordering": true,
         "lengthChange": true,
         dom: 'Bfrtip',
         "pageLength": 20,
         "language": {
-            searchPlaceholder: 'Buscar Candidato',
+            searchPlaceholder: 'Buscar Voto',
             sSearch: '',
             lengthMenu: 'MENU items/page',
             paginate: {
@@ -38,10 +38,10 @@ function CreateTable() {
                 text: '<i class="fas fa-clone"></i><strong>Copiar</strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Candidatos",
-                filename: "Candidatos",
+                title: "Votos",
+                filename: "Votos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0, 1, 2],
                     page: 'all'
                 },
                 orientation: "landscape",
@@ -52,10 +52,10 @@ function CreateTable() {
                 text: '<i class="fas fa-file-excel"></i><strong>Excel </strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Candidatos",
-                filename: "Candidatos",
+                title: "Votos",
+                filename: "Votos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0, 1, 2],
                     modifier: {
                         page: 'all',
                         search: 'none'
@@ -68,10 +68,10 @@ function CreateTable() {
                 text: '<i class="fas fa-file-excel"></i><strong>PDf </strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Candidatos",
-                filename: "Candidatos",
+                title: "Votos",
+                filename: "Votos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0, 1, 2],
                 },
                 orientation: "landscape",
                 pageSize: "LEGAL"
@@ -82,7 +82,7 @@ function CreateTable() {
 function ShowCreateModal() {
     $('#modalCreate').modal('show');
     $.ajax({
-        url: '/Candidato/Create',
+        url: '/Voto/Create',
         async: true,
         type: "GET",
         atType: 'html',
@@ -96,8 +96,8 @@ function ShowEditModal(id) {
     $('#modalEdit').modal('show');
 
     $.ajax({
-        url: '/Candidato/Editar',
-        data: { candidatoId: id },
+        url: '/Voto/Editar',
+        data: { votoId: id },
         async: true,
         type: "GET",
         atType: 'html',

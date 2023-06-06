@@ -31,10 +31,6 @@ public partial class EleccionesContext : DbContext
 
     public virtual DbSet<Voto> Votos { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Elecciones;Trusted_Connection=True;MultipleActiveResultSets=true;");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Candidato>(entity =>
@@ -135,6 +131,8 @@ public partial class EleccionesContext : DbContext
             entity.Property(e => e.IdMesa)
                 .ValueGeneratedNever()
                 .HasColumnName("id_mesa");
+            entity.Property(e => e.NumMesa).HasColumnName("num_mesa");
+            entity.Property(e => e.NumFolio).HasColumnName("num_folio");
             entity.Property(e => e.CantidadVotos).HasColumnName("cantidad_votos");
             entity.Property(e => e.EstadoEliminado).HasColumnName("estado_eliminado");
             entity.Property(e => e.IdUbicacion).HasColumnName("id_ubicacion");

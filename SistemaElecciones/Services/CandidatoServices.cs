@@ -5,8 +5,10 @@ namespace SistemaElecciones.Services
     public interface ICandidatoServices
     {
         List<Candidato> GetAll();
+        Candidato? Get(Guid id);
         void Add(Candidato candidato);
-        //void Delete(Guid id);
+        void Update(Candidato candidato);
+        void Delete(Guid id);
     }
     public class CandidatoServices : ICandidatoServices
     {
@@ -23,11 +25,50 @@ namespace SistemaElecciones.Services
             return _dbContext.Candidatos.ToList();
         }
 
+        public Candidato? Get(Guid id)
+        {
+            return _dbContext.Candidatos.FirstOrDefault(x => x.IdCandidato == id);
+        }
+
         public void Add(Candidato candidato)
         {
             candidato.IdCandidato = Guid.NewGuid();
+            candidato.EstadoEliminado = false;
+            candidato.BeforeSaveChanges();
             _dbContext.Candidatos.Add(candidato);
             _dbContext.SaveChanges();
+        }
+
+        public void Update(Candidato candidato)
+        {
+            var candidatoBD = Get(candidato.IdCandidato);
+            if (candidatoBD is not null)
+            {
+                candidatoBD.Nombre = candidato.Nombre;
+                candidatoBD.Apellido = candidato.Apellido;
+                candidatoBD.Dpi = candidato.Dpi;
+                candidatoBD.IdCargo = candidato.IdCargo;
+                candidatoBD.IdPartido = candidato.IdPartido;
+                candidatoBD.FechaNacimiento = candidato.FechaNacimiento;
+                candidatoBD.Genero = candidato.Genero;
+                candidatoBD.Telefono = candidato.Telefono;
+                candidatoBD.Correo= candidato.Correo;
+                candidatoBD.Profesion= candidato.Profesion;
+                candidatoBD.Antecedentes = candidato.Antecedentes;
+                candidatoBD.BeforeSaveChanges();
+
+                _dbContext.SaveChanges();
+            }
+        }
+
+        public void Delete(Guid id)
+        {
+            var candidato = Get(id);
+            if (candidato is not null)
+            {
+                candidato.EstadoEliminado = true;
+                _dbContext.SaveChanges();
+            }
         }
     }
 }

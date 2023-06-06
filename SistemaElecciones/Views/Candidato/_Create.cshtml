@@ -7,7 +7,7 @@
             <label class="control-label">Partido</label>
             <select required name="IdPartido" id="IdPartido" class="form-select select2">
                 <option value=""></option>
-                    @foreach (var partido in Model.Partidos)
+                    @foreach (var partido in Model.Partidos.Where(x => x.EstadoEliminado == false))
                     {
                         <option value="@partido.IdPartido">@partido.Nombre</option>
                     }
@@ -17,7 +17,7 @@
             <label class="control-label">Cargo</label>
             <select required name="IdCargo" id="IdCargo" class="form-select select2">
                 <option value=""></option>
-                    @foreach (var cargo in Model.Cargos)
+                    @foreach (var cargo in Model.Cargos.Where(x => x.EstadoEliminado == false))
                     {
                         <option value="@cargo.IdCargo">@cargo.Descripcion</option>
                     }

@@ -33,6 +33,8 @@ namespace SistemaElecciones.Services
         public void Add(Partido partido)
         {
             partido.IdPartido = Guid.NewGuid();
+            partido.EstadoEliminado = false;
+            partido.BeforeSaveChanges();
             _dbContext.Partidos.Add(partido);
             _dbContext.SaveChanges();
         }
@@ -43,6 +45,9 @@ namespace SistemaElecciones.Services
             if (partidoBD is not null)
             {
                 partidoBD.Nombre = partido.Nombre;
+                partidoBD.FechaFundacion = partido.FechaFundacion;
+                partidoBD.Sede = partido.Sede;
+                partidoBD.BeforeSaveChanges();
                 _dbContext.SaveChanges();
             }
         }
@@ -52,7 +57,7 @@ namespace SistemaElecciones.Services
             var partido = Get(id);
             if (partido is not null)
             {
-                //partido.EstadoEliminado = true;
+                partido.EstadoEliminado = true;
                 _dbContext.SaveChanges();
             }
         }

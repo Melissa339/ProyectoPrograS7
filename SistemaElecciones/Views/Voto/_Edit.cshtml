@@ -1,0 +1,30 @@
+﻿@model SistemaElecciones.Models.VotoViewModel
+
+<form id="editar" asp-action="Editar" method="POST">
+    <div class="row">
+        <div class="form-group">
+            <label class="control-label">Candidatooo</label>
+            <select required asp-for="Voto.IdCandidato" name="IdCandidato" id="IdCandidato" class="form-select select2">
+                <option value=""></option>
+                @foreach (var candidato in Model.Candidatos.Where(x => x.EstadoEliminado == false))
+                {
+                    <option value="@candidato.IdCandidato">@candidato.Nombre @candidato.Apellido </option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Mesa</label>
+            <select required asp-for="Voto.IdMesa" name="IdMesa" id="IdMesa" class="form-select select2">
+                <option value=""></option>
+                @foreach (var mesa in Model.Mesas.Where(x => x.EstadoEliminado == false))
+                {
+                    <option value="@mesa.IdMesa">Mesa No. @mesa.NumMesa - @mesa.IdUbicacionNavigation.Nombre</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">DPI Ciudadano</label>
+            <input required asp-for="Voto.DpiCiudadano" name="DpiCiudadano" id="DpiCiudadano" class="form-control" />
+        </div>
+    </div>
+</form>

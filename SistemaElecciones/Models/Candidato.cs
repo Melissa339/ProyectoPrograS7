@@ -38,4 +38,16 @@ public partial class Candidato
     public virtual ICollection<Resultado> Resultados { get; } = new List<Resultado>();
 
     public virtual ICollection<Voto> Votos { get; } = new List<Voto>();
+
+    public void BeforeSaveChanges()
+    {
+        Dpi ??= string.Empty;
+        Nombre ??= string.Empty;
+        Apellido ??= string.Empty;
+        Genero ??= string.Empty;
+        Correo ??= string.Empty;
+        Profesion ??= string.Empty;
+        Antecedentes ??= string.Empty;
+        Telefono ??= string.Empty;
+    }
 }

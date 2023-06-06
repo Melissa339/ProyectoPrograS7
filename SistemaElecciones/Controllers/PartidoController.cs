@@ -44,7 +44,7 @@ namespace SistemaElecciones.Controllers
         {
             var partido = _partidoService.Get(partidoId);
 
-            return PartialView("_Create",partido);
+            return PartialView("_Edit",partido);
         }
 
         [HttpPost]
@@ -59,6 +59,17 @@ namespace SistemaElecciones.Controllers
             {
                 return View("Error");
             }
+        }
+
+        [HttpPost]
+        public ActionResult Eliminar(Guid id)
+        {
+            try
+            {
+                _partidoService.Delete(id);
+            }
+            catch { }
+            return RedirectToAction("Index");
         }
     }
 }

@@ -18,4 +18,9 @@ public partial class Voto
     public virtual Candidato? IdCandidatoNavigation { get; set; }
 
     public virtual Mesa? IdMesaNavigation { get; set; }
+
+    public void BeforeSaveChanges()
+    {
+        DpiCiudadano ??= string.Empty;
+    }
 }

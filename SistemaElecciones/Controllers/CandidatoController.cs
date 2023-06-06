@@ -49,5 +49,40 @@ namespace SistemaElecciones.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult Editar(Guid candidatoId)
+        {
+            var partidos = _partidoService.GetAll();
+            var cargos = _cargoService.GetAll();
+            var candidato = _candidatoService.Get(candidatoId);
+
+            return PartialView("_Edit", new CandidatoViewModel { Candidato = candidato, Partidos = partidos, Cargos = cargos });
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Candidato candidato)
+        {
+            try
+            {
+                _candidatoService.Update(candidato);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Eliminar(Guid id)
+        {
+            try
+            {
+                _candidatoService.Delete(id);
+            }
+            catch { }
+            return RedirectToAction("Index");
+        }
     }
 }
