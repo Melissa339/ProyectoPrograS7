@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 function CreateTable() {
-    $('#tableCargos').DataTable({
+    $('#tableCandidato').DataTable({
         "autoWidth": true,
         "ordering": true,
         "lengthChange": true,
@@ -38,8 +38,8 @@ function CreateTable() {
                 text: '<i class="fas fa-clone"></i><strong>Copiar</strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Cargos",
-                filename: "Cargos",
+                title: "Candidatos",
+                filename: "Candidatos",
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4],
                     page: 'all'
@@ -52,8 +52,8 @@ function CreateTable() {
                 text: '<i class="fas fa-file-excel"></i><strong>Excel </strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Cargos",
-                filename: "Cargos",
+                title: "Candidatos",
+                filename: "Candidatos",
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4],
                     modifier: {
@@ -68,8 +68,8 @@ function CreateTable() {
                 text: '<i class="fas fa-file-excel"></i><strong>PDf </strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Cargos",
-                filename: "Cargos",
+                title: "Candidatos",
+                filename: "Candidatos",
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4],
                 },
@@ -82,7 +82,7 @@ function CreateTable() {
 function ShowCreateModal() {
     $('#modalCreate').modal('show');
     $.ajax({
-        url: '/Cargo/Create',
+        url: '/Candidato/Create',
         async: true,
         type: "GET",
         atType: 'html',
