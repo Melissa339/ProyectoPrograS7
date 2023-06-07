@@ -5,8 +5,8 @@ namespace SistemaElecciones.Services
     public interface IUsuarioServices
     {
         List<Usuario> GetAll();
-        //void Add(Cita cita);
-        //void Delete(Guid id);
+        Usuario Authenticate(string user, string password);
+
     }
     public class UsuarioServices : IUsuarioServices
     {
@@ -21,6 +21,12 @@ namespace SistemaElecciones.Services
         public List<Usuario> GetAll()
         {
             return _dbContext.Usuarios.ToList();
+        }
+
+        public Usuario Authenticate(string user, string password)
+        {
+            var userItem = _dbContext.Usuarios.FirstOrDefault(x => x.Password == password && x.Nombre == user);
+            return userItem;
         }
     }
 }

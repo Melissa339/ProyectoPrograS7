@@ -1,0 +1,130 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    /*    height:100%;
+    width: 100%;*/
+    background-color: #283149;
+}
+
+.logo {
+    width: 100px;
+}
+
+.logo-container {
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    background-color: #283149 !important;
+}
+
+.menu-container {
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    height: 40%;
+}
+
+.bigmenu-container {
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    height: 40%;
+}
+
+.container-fluid {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0 !important;
+}
+
+.buttons-container-fluid {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0 !important;
+
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 35%;
+    background-color: #283149 !important;
+}
+
+.top-buttons,
+.bottom-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    /* width: 50px;
+    height: 30px;  */
+}
+
+.form input[type="text"],
+.form input[type="password"] {
+    border-radius: 12px;
+    text-align: center;
+    display: block;
+    width: 400px;
+    padding: 6px 6px;
+    margin: auto;
+    color: #3f4a55;
+    outline: none;
+    transition: 0.25s
+}
+
+    .form input[type="text"]:focus,
+    .form input[type="password"]:focus {
+        width: 350px;
+    }
+
+        .form input[type="text"]:focus::placeholder,
+        .form input[type="password"]:focus::placeholder {
+            color: transparent;
+        }
+
+.form button[type="submit"] {
+    border-radius: 12px;
+    background-color: #4EC486;
+    border: 0;
+    width: 100px;
+    height: 40px;
+    color: white;
+}
+
+    .form button[type="submit"]:hover {
+        background: #39A66D;
+        color: white
+    }
+
+.forgot {
+    display: block;
+    padding-bottom: 30px;
+    color: #C5C5C5;
+    text-decoration: none;
+}
+
+.rounded-button {
+    border: none;
+    border-radius: 20px;
+    padding: 50px 100px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.9s ease;
+}
+
+    .rounded-button:hover {
+        background-color: #283149;
+        color: #ffffff;
+    }

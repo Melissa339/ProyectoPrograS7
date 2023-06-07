@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 function CreateTable() {
-    $('#tableCargos').DataTable({
+    $('#tableCandidato').DataTable({
         "autoWidth": true,
         "ordering": true,
         "lengthChange": true,
@@ -41,7 +41,7 @@ function CreateTable() {
                 title: "Cargos",
                 filename: "Cargos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0, 1, 2, 3, 4, 5],
                     page: 'all'
                 },
                 orientation: "landscape",
@@ -55,7 +55,7 @@ function CreateTable() {
                 title: "Cargos",
                 filename: "Cargos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0, 1, 2, 3, 4, 5],
                     modifier: {
                         page: 'all',
                         search: 'none'
@@ -71,7 +71,7 @@ function CreateTable() {
                 title: "Cargos",
                 filename: "Cargos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0, 1, 2, 3, 4, 5],
                 },
                 orientation: "landscape",
                 pageSize: "LEGAL"

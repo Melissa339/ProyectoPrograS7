@@ -3,14 +3,14 @@ $(document).ready(function () {
 });
 
 function CreateTable() {
-    $('#tableCandidato').DataTable({
+    $('#tableCargos').DataTable({
         "autoWidth": true,
         "ordering": true,
         "lengthChange": true,
         dom: 'Bfrtip',
         "pageLength": 20,
         "language": {
-            searchPlaceholder: 'Buscar Candidato',
+            searchPlaceholder: 'Buscar Cargo',
             sSearch: '',
             lengthMenu: 'MENU items/page',
             paginate: {
@@ -38,10 +38,10 @@ function CreateTable() {
                 text: '<i class="fas fa-clone"></i><strong>Copiar</strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Candidatos",
-                filename: "Candidatos",
+                title: "Cargos",
+                filename: "Cargos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0],
                     page: 'all'
                 },
                 orientation: "landscape",
@@ -52,10 +52,10 @@ function CreateTable() {
                 text: '<i class="fas fa-file-excel"></i><strong>Excel </strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Candidatos",
-                filename: "Candidatos",
+                title: "Cargos",
+                filename: "Cargos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0],
                     modifier: {
                         page: 'all',
                         search: 'none'
@@ -68,10 +68,10 @@ function CreateTable() {
                 text: '<i class="fas fa-file-excel"></i><strong>PDf </strong>',
                 messageTop: '',
                 className: "btn btn-outline-dark",
-                title: "Candidatos",
-                filename: "Candidatos",
+                title: "Cargos",
+                filename: "Cargos",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4],
+                    columns: [0],
                 },
                 orientation: "landscape",
                 pageSize: "LEGAL"

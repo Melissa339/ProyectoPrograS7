@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
 using SistemaElecciones.Models;
 using SistemaElecciones.Services;
 
@@ -15,41 +16,48 @@ namespace SistemaElecciones.Controllers
         public HomeController(IMesaServices mesaServices,ICargoServices cargoServices, IMemoryCache memoryCache, IUsuarioServices usuarioServices)
         {
             _usuarioServices = usuarioServices;
-            _mesaServices = mesaServices;
-            _cargoServices = cargoServices;
             _memoryCache = memoryCache;
         }
 
         public IActionResult Index()
         {
-            List<Cargo> cargos = _cargoServices.GetAll();
 
-            return View(cargos);
+            return View();
         }
 
-        public IActionResult MesasInfo()
+        public IActionResult Inicio()
         {
-            var vMesas = _mesaServices.GetAll();
-            var vUsuarios = _usuarioServices.GetAll();
-            //return View(new MesasViewModel { mesas = vMesas, usuarios = vUsuarios });
-            List<Mesa> mesas = _mesaServices.GetAll();
-            return View("MesasInfo", mesas);
+            return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Eliminar(Guid id)
+        public IActionResult LogIn(string password, string user)
         {
-            try
+
+            var existingUser = _usuarioServices.Authenticate(user, password);
+            //Usuario existingUser = new() { Nombre = "Dev", Apellido = "Test"};
+            //existingUser.IdUsuario = new Guid();
+            if (existingUser is not null)
             {
-                _mesaServices.DeleteMesa(id);
+                string clave = "UserData";
+                string valor = JsonConvert.SerializeObject(existingUser);
+                _memoryCache.Set(clave, valor);
+                TempData["UsuarioNombre"] = $"{existingUser.Nombre}";
+                return RedirectToAction("Inicio", "Home");
             }
-            catch { }
-            var vMesas = _mesaServices.GetAll();
-            var vUsuarios = _usuarioServices.GetAll();
-            //return View(new MesasViewModel { mesas = vMesas, usuarios = vUsuarios });
-            List<Mesa> mesas = _mesaServices.GetAll();
-            return View("MesasInfo", mesas);
+            else
+            {
+                return Content("alert('El usuario no existe');", "application/javascript"); // se agrega return content solo para probar el metodo.
+            }
+
+            // context.HttpContext.Session.SetString($"UserData({country + "|" + session.TaxId})", JsonConvert.SerializeObject(securityUserData));
+
+            //return View("/Pacientes/Pacientes");
+        }
+
+        [HttpGet]
+        public IActionResult LogOut() {
+            return RedirectToAction("Index");
         }
     }
 }
