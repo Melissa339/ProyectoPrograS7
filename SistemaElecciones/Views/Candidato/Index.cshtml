@@ -29,6 +29,7 @@
                         <th>DPI</th>
                         <th>Partido</th>
                         <th>Cargo</th>
+                        <th>Votos</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -41,6 +42,7 @@
                             <td>@candidato.Dpi</td>
                             <td>@Model.Partidos.FirstOrDefault(x => x.IdPartido == candidato.IdPartido).Nombre</td>
                             <td>@Model.Cargos.FirstOrDefault(x => x.IdCargo == candidato.IdCargo).Descripcion</td>
+                            <td>@candidato.CantidadVotos</td>
                             <td>
                                 <div class="options d-flex ">
                                     <button class="option btn btn-outline-info" onclick="ShowEditModal('@candidato.IdCandidato')">Ver datos</button>

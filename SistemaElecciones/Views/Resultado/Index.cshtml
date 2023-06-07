@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var candidato in Model.candidatos)
+                    @foreach (var candidato in Model.candidatos.Where(x => x.EstadoEliminado == false))
                     {
                         <tr>
 @*                            <td>@Model.usuarios.FirstOrDefault(x=>x.IdUsuario == mesa.IdUsuario).Nombre</td>
@@ -69,8 +69,8 @@
     var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, jsonSettings);
 
     
-    var nombresCandidatos = Model.candidatos.Select(c => c.Nombre).ToList();
-    var nombresCargos = Model.cargos.Select(c => c.Descripcion).ToList();
+    var nombresCandidatos = Model.candidatos.Where(x => x.EstadoEliminado == false).Select(c => c.Nombre).ToList();
+    var nombresCargos = Model.cargos.Where(x => x.EstadoEliminado == false).Select(c => c.Descripcion).ToList();
     var votos = Model.candidatos.Select(r => r.CantidadVotos).ToList();
 }
 
