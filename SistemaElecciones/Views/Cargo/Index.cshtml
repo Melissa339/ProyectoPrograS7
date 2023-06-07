@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var cargo in Model)
+                    @foreach (var cargo in Model.Where(x => x.EstadoEliminado == false))
                     {
                         <tr>
                             <td>@cargo.Descripcion</td>                           
@@ -51,5 +51,5 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/pages/mesa.js" asp-append-version="true"></script>
+    <script src="~/js/pages/cargo.js" asp-append-version="true"></script>
 }

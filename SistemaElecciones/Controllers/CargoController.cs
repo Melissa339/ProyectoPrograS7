@@ -31,24 +31,26 @@ namespace SistemaElecciones.Controllers
         {
             try
             {
-                _mesaServices.DeleteMesa(id);
+                _cargoServices.DeleteCargo(id);
             }
             catch { }
-            //var vMesas = _mesaServices.GetAll();
-            //var vUsuarios = _usuarioServices.GetAll();
-            //return View(new MesasViewModel { mesas = vMesas, usuarios = vUsuarios });
-            List<Mesa> mesas = _mesaServices.GetAll();
-            return View("Index", mesas);
+            List<Cargo> mesa = _cargoServices.GetAll();
+            return View("Index", mesa);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return PartialView("_Create");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Mesa Mesa)
+        public ActionResult Create(Cargo cargo)
         {
             try
             {
-                _mesaServices.AddMesa(Mesa);
-                return RedirectToAction("Index");
+                _cargoServices.Add(cargo);
             }
             catch
             {

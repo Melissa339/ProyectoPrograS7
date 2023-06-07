@@ -57,8 +57,8 @@ namespace SistemaElecciones.Controllers
             var listaResultado = _resultadosServices.resumen3(idCargo);
 
             // Obtener los nombres de los candidatos y los votos de los resultados
-            var nombresCandidatos = listaResultado.SelectMany(r => r.candidatos).Select(c => c.Nombre).ToList();
-            var votos = listaResultado.SelectMany(r => r.candidatos).Select(r => r.CantidadVotos).ToList();
+            var nombresCandidatos = listaResultado.SelectMany(r => r.candidatos).Where(s=>s.EstadoEliminado == false).Select(c => c.Nombre).ToList();
+            var votos = listaResultado.SelectMany(r => r.candidatos).Where(s => s.EstadoEliminado == false).Select(r => r.CantidadVotos).ToList();
 
             // Crear un objeto anónimo con los datos filtrados
             var datosGrafica = new { nombresCandidatos, votos };

@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var mesa in Model.mesas)
+                    @foreach (var mesa in Model.mesas.Where(x => x.EstadoEliminado == false))
                     {
                         <tr>
                             <td>@Model.usuarios.FirstOrDefault(x=>x.IdUsuario == mesa.IdUsuario).Nombre</td>
@@ -37,7 +37,7 @@
                             <td>@mesa.CantidadVotos</td>                           
                             <td>
                                 <div class="options d-flex ">
-                                    @*<button class="option btn btn-outline-info" onclick="ShowEditModal('@candidato.IdCandidato')">Ver datos</button>*@
+                                    <button class="option btn btn-outline-info" onclick="ShowEditModal('@mesa.IdMesa')">Editar</button>
                                     <form id="eliminarForm" onsubmit="alertElminarPrevent(event)" asp-action="Eliminar" asp-route-id="@mesa.IdMesa">
                                         <button class="option btn btn-outline-info" type="submit">Eliminar</button>
                                     </form>

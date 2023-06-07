@@ -45,7 +45,10 @@ namespace SistemaElecciones.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return PartialView("_Create");
+            var encargados = _usuarioServices.GetAll();
+            var departamentos = _departamentoServices.GetAll();
+
+            return PartialView("_Create",new MesasViewModel { departamentos = departamentos,usuarios = encargados });
         }
 
         [HttpPost]
@@ -55,7 +58,6 @@ namespace SistemaElecciones.Controllers
             try
             {
                 _mesaServices.AddMesa(Mesa);
-                return RedirectToAction("Index");
             }
             catch
             {
@@ -64,20 +66,21 @@ namespace SistemaElecciones.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpGet]
-        //public IActionResult Editar(Guid mesaId)
-        //{
-        //    //var mesa = _mesaServices.Get(mesaId);
+        [HttpGet]
+        public IActionResult Editar(Guid mesaId)
+        {
+            var mesa = _mesaServices.Get(mesaId);
+            var departamentos = _departamentoServices.GetAll();
 
-        //    //return PartialView("_Edit", mesa);
-        //}
+            return PartialView("_Edit", new MesasViewModel { mesa= mesa,departamentos = departamentos });
+        }
 
         [HttpPost]
-        public ActionResult Editar(Partido partido)
+        public ActionResult Editar(Mesa mesa)
         {
             try
             {
-                //_partidoService.Update(partido);
+                _mesaServices.Update(mesa);
                 return RedirectToAction("Index");
             }
             catch

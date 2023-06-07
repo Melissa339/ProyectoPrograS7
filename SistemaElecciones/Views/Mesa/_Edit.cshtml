@@ -1,0 +1,25 @@
+﻿@model SistemaElecciones.Models.MesasViewModel
+
+<form id="editar" asp-action="Editar" method="POST">
+    <div class="row">
+            <input hidden name="IdMesa" value="@Model.mesa.IdMesa" />
+        <div class="form-group">
+            <label class="control-label">Numero Mesa</label>
+            <input asp-for="@Model.mesa.NumMesa" name="NumMesa" id="NumMesa" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Numero de folio</label>
+            <input asp-for="@Model.mesa.NumFolio" name="NumFolio" id="NumFolio" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Ubicacion</label>
+            <select required name="IdUbicacion" id="IdUbicacion" class="form-select select2">
+                <option value=""></option>
+                @foreach (var ubicacion in Model.departamentos)
+                {
+                    <option value="@ubicacion.IdDepartamento">@ubicacion.Nombre</option>
+                }
+            </select>
+        </div>
+    </div>
+</form>

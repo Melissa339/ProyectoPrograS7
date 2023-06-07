@@ -2,31 +2,9 @@
 
 <form id="crear" asp-action="Create" method="POST">
     <div class="row">
-        <div class="col-md-6">
-        @*<div class="form-group">
-            <label class="control-label">Partido</label>
-                <select required name="IdPartido" id="IdPartido" class="form-select select2">
-                    <option value=""></option>
-                    @foreach (var encargado in Model.usuarios)
-                    {
-                        <option value="@encargado.IdUsuario">@encargado.Nombre</option>
-                    }
-                </select>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Cargo</label>
-                <select required name="IdDepartamento" id="IdDepartamento" class="form-select select2">
-                    <option value=""></option>
-                    @foreach (var ubicacion in Model.departamentos)
-                    {
-                        <option value="@ubicacion.IdDepartamento">@ubicacion.Nombre</option>
-                    }
-                </select>
-        </div>*@
         <div class="form-group">
             <label class="control-label">Descripcion/Nombre del cargo</label>
-                <input required name="descripcion" id="descripcion" class="form-control" />
-        </div>
+            <input required name="Descripcion" id="Descripcion" class="form-control" />
         </div>
     </div>
 </form>

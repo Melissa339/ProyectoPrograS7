@@ -8,7 +8,8 @@ namespace SistemaElecciones.Services
         void DeleteMesa(Guid id);
         int AddMesa(Mesa Mesa);
         void AddVoto(Guid id);
-
+        Mesa? Get(Guid id);
+        void Update(Mesa Mesa);
     }
     public class MesaServices : IMesaServices
     {
@@ -49,6 +50,7 @@ namespace SistemaElecciones.Services
                 var MesaOnDb = _dbContext.Mesas.FirstOrDefault(x => x.IdMesa == Mesa.IdMesa);
                 if (MesaOnDb is not null) return 2;
                 Mesa.IdMesa = newGuid;
+                Mesa.EstadoEliminado = false;
                 _dbContext.Mesas.Add(Mesa);
                 _dbContext.SaveChanges();
                 return 1;
@@ -56,6 +58,24 @@ namespace SistemaElecciones.Services
             catch (Exception)
             {
                 return 3;
+            }
+        }
+
+        public Mesa? Get(Guid id)
+        {
+            return _dbContext.Mesas.FirstOrDefault(x => x.IdMesa == id);
+        }
+
+        public void Update(Mesa Mesa)
+        {
+            var mesaDB = Get(Mesa.IdMesa);
+            if (mesaDB is not null)
+            {
+                mesaDB.NumMesa = Mesa.NumMesa;
+                mesaDB.NumFolio = Mesa.NumFolio;
+                mesaDB.IdUbicacion = Mesa.IdUbicacion;
+                mesaDB.BeforeSaveChanges();
+                _dbContext.SaveChanges();
             }
         }
 

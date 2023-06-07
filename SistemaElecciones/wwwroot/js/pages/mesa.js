@@ -91,3 +91,18 @@ function ShowCreateModal() {
         }
     });
 }
+
+    function ShowEditModal(id) {
+        $('#modalEdit').modal('show');
+
+        $.ajax({
+            url: '/Mesa/Editar',
+            data: { mesaId: id },
+            async: true,
+            type: "GET",
+            atType: 'html',
+            success: function (res) {
+                $('#modalEdit').find('.modal-body').html(res);
+            }
+        });
+}

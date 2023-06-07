@@ -12,4 +12,9 @@ public partial class Cargo
     public bool? EstadoEliminado { get; set; }
 
     public virtual ICollection<Candidato> Candidatos { get; } = new List<Candidato>();
+
+    public void BeforeSaveChanges()
+    {
+        Descripcion ??= string.Empty;
+    }
 }

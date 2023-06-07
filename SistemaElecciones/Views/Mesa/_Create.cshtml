@@ -2,20 +2,20 @@
 
 <form id="crear" asp-action="Create" method="POST">
     <div class="row">
-        <div class="col-md-6">
+        
         <div class="form-group">
-            <label class="control-label">Partido</label>
-                <select required name="IdPartido" id="IdPartido" class="form-select select2">
+            <label class="control-label">Encargado</label>
+            <select required name="IdUsuario" id="IdUsuario" class="form-select select2">
                     <option value=""></option>
-                    @foreach (var encargado in Model.usuarios)
+                    @foreach (var mesa in Model.usuarios)
                     {
-                        <option value="@encargado.IdUsuario">@encargado.Nombre</option>
+                        <option value="@mesa.IdUsuario">@Model.usuarios.FirstOrDefault(x=>x.IdUsuario == mesa.IdUsuario).Nombre</option>
                     }
                 </select>
         </div>
         <div class="form-group">
-            <label class="control-label">Cargo</label>
-                <select required name="IdDepartamento" id="IdDepartamento" class="form-select select2">
+            <label class="control-label">Ubicacion</label>
+            <select required name="IdUbicacion" id="IdUbicacion" class="form-select select2">
                     <option value=""></option>
                     @foreach (var ubicacion in Model.departamentos)
                     {
@@ -25,8 +25,15 @@
         </div>
         <div class="form-group">
             <label class="control-label">Cantidad de votos</label>
-                <input required name="cantidad_votos" id="cantidad_votos" class="form-control" />
+                <input required name="CantidadVotos" id="CantidadVotos" class="form-control" />
         </div>
-        </div>
+            <div class="form-group">
+                <label class="control-label">Numero de mesa</label>
+                <input required name="NumMesa" id="NumMesa" class="form-control" />
+            </div>
+        <div class="form-group">
+                <label class="control-label">Numero de folio</label>
+                <input required name="NumFolio" id="NumFolio" class="form-control" />
+         </div>
     </div>
 </form>
