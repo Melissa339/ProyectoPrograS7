@@ -29,6 +29,7 @@ public partial class Candidato
 
     public string? Antecedentes { get; set; }
 
+    public int? CantidadVotos { get; set; }
     public bool? EstadoEliminado { get; set; }
 
     public virtual Cargo? IdCargoNavigation { get; set; }

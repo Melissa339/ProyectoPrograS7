@@ -46,6 +46,9 @@ public partial class EleccionesContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("antecedentes");
+            entity.Property(e => e.CantidadVotos)
+                .IsUnicode(false)
+                .HasColumnName("cantidad_votos");
             entity.Property(e => e.Apellido)
                 .HasMaxLength(100)
                 .IsUnicode(false)

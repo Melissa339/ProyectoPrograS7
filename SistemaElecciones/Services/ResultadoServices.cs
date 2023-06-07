@@ -9,6 +9,7 @@ namespace SistemaElecciones.Services
         List<ResultadoViewModel> resumen();
 
         List<ResultadoViewModel> resumen2(Guid idCargo);
+        List<ResultadoViewModel> resumen3(Guid idCargo);
         //void Add(Cita cita);
         //void Delete(Guid id);
     }
@@ -50,6 +51,23 @@ namespace SistemaElecciones.Services
                                                        select new ResultadoViewModel
                                                        {
                                                            resultados = grupo.Select(g => g.resultados).ToList(),
+                                                           candidatos = grupo.Select(g => g.candidatos).ToList(),
+                                                           cargos = grupo.Select(g => g.cargos).ToList()
+                                                       }).ToList();
+
+            return listaResultado;
+        }
+
+        public List<ResultadoViewModel> resumen3(Guid idCargo)
+        {
+            // Lógica para obtener los resultados, candidatos y cargos según el idCargo
+            List<ResultadoViewModel> listaResultado = (from candidatos in _dbContext.Candidatos
+                                                       join cargos in _dbContext.Cargos on candidatos.IdCargo equals cargos.IdCargo
+                                                       // Agrega una condición para filtrar por idCargo
+                                                       where cargos.IdCargo == idCargo
+                                                       group new { candidatos, cargos } by new { candidatos.Nombre, cargos.Descripcion } into grupo
+                                                       select new ResultadoViewModel
+                                                       {
                                                            candidatos = grupo.Select(g => g.candidatos).ToList(),
                                                            cargos = grupo.Select(g => g.cargos).ToList()
                                                        }).ToList();
