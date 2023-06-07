@@ -25,7 +25,6 @@
                         <th>No Mesa</th>
                         <th>No Folio</th>
                         <th>Candidato</th>
-                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,14 +36,6 @@
                             <td>@Model.Mesas.FirstOrDefault(x => x.IdMesa == voto.IdMesa).NumMesa</td>
                             <td>@Model.Mesas.FirstOrDefault(x => x.IdMesa == voto.IdMesa).NumFolio</td>
                             <td>@Model.Candidatos.FirstOrDefault(x => x.IdCandidato == voto.IdCandidato).Nombre @Model.Candidatos.FirstOrDefault(x => x.IdCandidato == voto.IdCandidato).Apellido</td>
-                            <td> 
-                                <div class="options d-flex ">
-                                    <button class="option btn btn-outline-info" onclick="ShowEditModal('@voto.IdCandidato')">Ver datos</button>
-                                    <form id="eliminarForm" onsubmit="alertElminarPrevent(event)" asp-action="Eliminar" asp-route-id="@voto.IdCandidato">
-                                        <button class="option btn btn-outline-info" type="submit">Eliminar</button>
-                                    </form>
-                                </div>
-                            </td>
                         </tr>
                     }
                 </tbody>
