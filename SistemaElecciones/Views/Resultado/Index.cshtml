@@ -52,7 +52,7 @@
     <option value=""></option>
     @foreach (var cargo in Model.cargos)
     {
-        if (cargo == Model.cargos.FirstOrDefault())
+            if (cargo == Model.cargos.Where(x => x.EstadoEliminado == false).FirstOrDefault())
         {
             <option value="@cargo.IdCargo" selected>@cargo.Descripcion</option>
         }
