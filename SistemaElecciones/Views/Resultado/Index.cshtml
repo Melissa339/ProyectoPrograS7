@@ -22,14 +22,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var resultados in Model.resultados)
+                    @foreach (var candidato in Model.candidatos)
                     {
                         <tr>
 @*                            <td>@Model.usuarios.FirstOrDefault(x=>x.IdUsuario == mesa.IdUsuario).Nombre</td>
                             <td>@Model.departamentos.FirstOrDefault(x=> x.IdDepartamento == mesa.IdUbicacion).Nombre</td>*@
-                            <td>@Model.candidatos.FirstOrDefault(x=>x.IdCandidato == resultados.IdCandidato).Nombre</td>
-                            <td>@resultados.Votos</td>
-                            <td>@Model.cargos.FirstOrDefault(x=> x.IdCargo == resultados.IdCandidatoNavigation.IdCargo).Descripcion</td>                          
+                            <td>@Model.candidatos.FirstOrDefault(x=>x.IdCandidato == candidato.IdCandidato).Nombre</td>
+                            <td>@candidato.CantidadVotos</td>
+                            <td>@Model.cargos.FirstOrDefault(x=> x.IdCargo == candidato.IdCargoNavigation.IdCargo).Descripcion</td>
                         </tr>
                     }
                 </tbody>
@@ -71,7 +71,7 @@
     
     var nombresCandidatos = Model.candidatos.Select(c => c.Nombre).ToList();
     var nombresCargos = Model.cargos.Select(c => c.Descripcion).ToList();
-    var votos = Model.resultados.Select(r => r.Votos).ToList();
+    var votos = Model.candidatos.Select(r => r.CantidadVotos).ToList();
 }
 
 

@@ -64,13 +64,13 @@ namespace SistemaElecciones.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public IActionResult Editar(Guid mesaId)
-        {
-            //var mesa = _mesaServices.Get(mesaId);
+        //[HttpGet]
+        //public IActionResult Editar(Guid mesaId)
+        //{
+        //    //var mesa = _mesaServices.Get(mesaId);
 
-            //return PartialView("_Edit", mesa);
-        }
+        //    //return PartialView("_Edit", mesa);
+        //}
 
         [HttpPost]
         public ActionResult Editar(Partido partido)
