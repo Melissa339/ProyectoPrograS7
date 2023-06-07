@@ -7,8 +7,8 @@ namespace SistemaElecciones.Services
         List<Mesa> GetAll();
         void DeleteMesa(Guid id);
         int AddMesa(Mesa Mesa);
-        //void Add(Cita cita);
-        //void Delete(Guid id);
+        void AddVoto(Guid id);
+
     }
     public class MesaServices : IMesaServices
     {
@@ -56,6 +56,26 @@ namespace SistemaElecciones.Services
             catch (Exception)
             {
                 return 3;
+            }
+        }
+
+        public void AddVoto(Guid id)
+        {
+            var mesaDB = GetMesa(id);
+            if (mesaDB is not null)
+            {
+                if (mesaDB.CantidadVotos == null)
+                {
+                    mesaDB.CantidadVotos = 1;
+                    mesaDB.BeforeSaveChanges();
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    mesaDB.CantidadVotos += 1;
+                    mesaDB.BeforeSaveChanges();
+                    _dbContext.SaveChanges();
+                }
             }
         }
     }

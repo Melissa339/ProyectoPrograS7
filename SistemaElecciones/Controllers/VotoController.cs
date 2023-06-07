@@ -48,10 +48,11 @@ namespace SistemaElecciones.Controllers
             try
             {
                 _votoService.Add(voto);
+                _candidatoService.AddVoto(voto.IdCandidato);
+                _mesaService.AddVoto(voto.IdMesa);
             }
             catch
-            {
-            }
+            {}
             return RedirectToAction("Index");
         }
 

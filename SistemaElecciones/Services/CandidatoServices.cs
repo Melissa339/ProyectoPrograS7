@@ -8,6 +8,7 @@ namespace SistemaElecciones.Services
         Candidato? Get(Guid id);
         void Add(Candidato candidato);
         void Update(Candidato candidato);
+        void AddVoto(Guid id);
         void Delete(Guid id);
     }
     public class CandidatoServices : ICandidatoServices
@@ -58,6 +59,26 @@ namespace SistemaElecciones.Services
                 candidatoBD.BeforeSaveChanges();
 
                 _dbContext.SaveChanges();
+            }
+        }
+
+        public void AddVoto(Guid id)
+        {
+            var candidatoBD = Get(id);
+            if (candidatoBD is not null)
+            {
+                if (candidatoBD.CantidadVotos == null)
+                {
+                    candidatoBD.CantidadVotos = 1;
+                    candidatoBD.BeforeSaveChanges();
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    candidatoBD.CantidadVotos += 1;
+                    candidatoBD.BeforeSaveChanges();
+                    _dbContext.SaveChanges();
+                }
             }
         }
 
